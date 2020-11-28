@@ -1,13 +1,17 @@
 const express = require('express');
 
-const routes = require('./routes');
-
+require('express-async-errors');
 require('../sequelize');
+
+const routes = require('./routes');
+const ErrorHandler = require('./middlewares/ErrorHandler');
 
 const app = express();
 
 app.use(express.json());
 app.use(routes);
+
+app.use(ErrorHandler);
 
 app.listen(3333, () => {
     console.log('Server listening at port 3333!');
