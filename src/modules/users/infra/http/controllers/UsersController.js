@@ -1,12 +1,15 @@
 const UsersRepository = require('../../sequelize/repositories/UsersRepository');
+const CreateUserService = require('../../../services/CreateUserService');
 
 class UsersController {
     async create(request, response) {
         const { name, email } = request.body;
 
-        const usersRepo = new UsersRepository();
+        const usersRepository = new UsersRepository();
 
-        const user = await usersRepo.create({ name, email });
+        const createUser = new CreateUserService(usersRepository);
+
+        const user = await createUser.execute({ name, email });
 
         return response.json(user);
     }
