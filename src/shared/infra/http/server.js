@@ -2,7 +2,7 @@ const express = require('express');
 
 const routes = require('./routes');
 
-require('../../../modules/users/infra/sequelize');
+require('../sequelize');
 
 const app = express();
 
