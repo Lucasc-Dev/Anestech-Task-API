@@ -14,5 +14,5 @@ app.use(routes);
 app.use(ErrorHandler);
 
 app.listen(3333, () => {
-    console.log('Server listening at port 3333!');
+    console.log('Server running on port 3333!');
 });
