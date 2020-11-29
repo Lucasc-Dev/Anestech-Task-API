@@ -7,6 +7,12 @@ class UsersRepository{
         return user;
     }
 
+    async findMany(page) {
+        const users = await User.findAll();
+
+        return users;
+    }
+
     async findById(id) {
         const user = await User.findOne({ where: { id } });
 
