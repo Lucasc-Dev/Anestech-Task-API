@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-class User extends Sequelize.Model {
+class Permission extends Sequelize.Model {
     static init(sequelize) {
         super.init({
             id: {
@@ -11,7 +11,6 @@ class User extends Sequelize.Model {
                 unique: true,
             },
             name: Sequelize.STRING,
-            email: Sequelize.STRING,
         }, {
             sequelize
         });
@@ -19,11 +18,11 @@ class User extends Sequelize.Model {
 
     static associate(models) {
         this.belongsToMany(model.Role, {
-            through: 'user_role',
+            through: 'role_permission',
             as: 'roles',
-            foreignKey: 'user_id'
+            foreignKey: 'permission_id'
         });
     }
 }
 
-module.exports = User;
+module.exports = Permission;

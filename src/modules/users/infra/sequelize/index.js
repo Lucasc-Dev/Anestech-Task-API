@@ -2,19 +2,13 @@ const Sequelize = require('sequelize');
 const databaseConfig = require('../../../../configs/database');
 
 const User = require('./models/User');
+const Role = require('./models/Role');
+const Permission = require('./models/Permission');
 
-const models = [User];
+const connection = new Sequelize(databaseConfig);
 
-class Database {
-    constructor() {
-        this.init();
-    }
+User.init(connection);
+Role.init(connection);
+Permission.init(connection);
 
-    init() {
-        this.connection = new Sequelize(databaseConfig);
-
-        models.map(model => model.init(this.connection));
-    }
-}
-
-module.exports = new Database();
+module.exports = connection;
