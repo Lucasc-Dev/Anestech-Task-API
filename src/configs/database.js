@@ -1,8 +1,8 @@
 module.exports = {
-  "username": "root",
-  "password": "mysql",
-  "database": "anestech-task-api",
-  "host": "localhost",
+  "username": process.env.DB_USERNAME,
+  "password": process.env.DB_PASSWORD,
+  "database": process.env.DB_DATABASE,
+  "host": process.env.HOST,
   "dialect": "mysql",
   "logging": false,
   "define": {
@@ -11,10 +11,10 @@ module.exports = {
     "underscoredAll": true,
   },
   "development": {
-    "username": "root",
-    "password": "mysql",
-    "database": "anestech-task-api",
-    "host": "localhost",
+    "username": process.env.DB_USERNAME,
+    "password": process.env.DB_PASSWORD,
+    "database": process.env.DB_DATABASE,
+    "host": process.env.DB_HOST,
     "dialect": "mysql",
     "define": {
       "timestamps": true,
@@ -23,10 +23,10 @@ module.exports = {
     },
   },
   "production": {
-    "username": "root",
-    "password": "mysql",
-    "database": "anestech-task-api",
-    "host": "localhost",
+    "username": process.env.DB_USERNAME,
+    "password": process.env.DB_PASSWORD,
+    "database": process.env.DB_DATABASE,
+    "host": process.env.DB_HOST,
     "dialect": "mysql",
     "logging": false,
     "define": {
