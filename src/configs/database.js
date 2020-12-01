@@ -16,7 +16,6 @@ module.exports = {
     "database": "anestech-task-api",
     "host": "localhost",
     "dialect": "mysql",
-    "logging": false,
     "define": {
       "timestamps": true,
       "underscored": true,
