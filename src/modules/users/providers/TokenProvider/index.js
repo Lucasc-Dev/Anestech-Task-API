@@ -1,4 +1,4 @@
-const { sign } = require('jsonwebtoken');
+const { sign, verify } = require('jsonwebtoken');
 
 class JsonWebToken {
     async generateToken({ subject, secret, expiresIn }) {
@@ -8,6 +8,12 @@ class JsonWebToken {
         });
 
         return token;
+    }
+
+    verifyToken({ token, secret }) {
+        const decoded = verify(token, secret);
+        
+        return decoded;
     }
 }
 
