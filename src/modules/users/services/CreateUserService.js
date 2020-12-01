@@ -19,7 +19,7 @@ class CreateUserService {
         if (roles) {
             rolesModels = await this.rolesRepository.findManyByName(roles);
 
-            if (!rolesRepository) {
+            if (!rolesModels) {
                 throw new AppError('Roles not found');
             }
         }else {

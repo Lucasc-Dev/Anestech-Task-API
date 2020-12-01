@@ -36,6 +36,7 @@ router.put(
         [Segments.BODY]: {
             name: Joi.string().required(),
             email: Joi.string().email(),
+            roles: Joi.array(),
         }
     }),
     permission('UPDATE_USER'), 

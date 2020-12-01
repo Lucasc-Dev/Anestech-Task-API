@@ -11,8 +11,14 @@ class UsersRepository{
         return user;
     }
 
-    async save(user) {
-        await user.save();
+    async save({ user, roles }) {
+        if (roles) {
+            await user.setRoles(roles.map(role => role.dataValues.id));
+        }
+
+        const updatedUser = await user.save();
+        
+        return updatedUser;
     }
 
     async findMany(page) {
