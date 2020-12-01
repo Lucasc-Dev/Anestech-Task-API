@@ -27,7 +27,7 @@ class ShowIndicatorsService {
         
         let index = 0;
 
-        const created_to_started_time_average = tasks.rows.reduce(
+        let created_to_started_time_average = tasks.rows.reduce(
             (acumulator, { dataValues: current }) => {
                 if (current.started_at) {
                     index++;
@@ -38,9 +38,13 @@ class ShowIndicatorsService {
             }, 0,
         ) / index; 
 
+        if (!created_to_started_time_average && created_to_started_time_average !== 0) {
+            created_to_started_time_average = 'Insufficient data';
+        }
+
         index = 0;
 
-        const started_to_finished_time_average = tasks.rows.reduce(
+        let started_to_finished_time_average = tasks.rows.reduce(
             (acumulator, { dataValues: current }) => {
                 if (current.started_at && current.finished_at) {
                     index++;
@@ -50,6 +54,10 @@ class ShowIndicatorsService {
                 }
             }, 0,
         ) / index; 
+
+        if (!started_to_finished_time_average && started_to_finished_time_average !== 0) {
+            started_to_finished_time_average = 'Insufficient data';
+        }
 
         const response = {
             start_date, 
