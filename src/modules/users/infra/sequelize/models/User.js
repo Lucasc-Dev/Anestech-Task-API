@@ -1,28 +1,34 @@
-const Sequelize = require('sequelize');
+const { Model, DataTypes } = require('sequelize');
 
-class User extends Sequelize.Model {
+class User extends Model {
     static init(sequelize) {
         super.init({
             id: {
-                type: Sequelize.UUID, 
-                defaultValue: Sequelize.UUIDV4,
+                type: DataTypes.UUID, 
+                defaultValue: DataTypes.UUIDV4,
                 primaryKey: true,
                 allowNull: false, 
                 unique: true,
             },
-            name: Sequelize.STRING,
-            email: Sequelize.STRING,
+            name: DataTypes.STRING,
+            email: DataTypes.STRING,
         }, {
             sequelize
         });
     }
 
     static associate(models) {
-        this.belongsToMany(model.Role, {
+        this.belongsToMany(models.Role, {
             through: 'user_role',
             as: 'roles',
-            foreignKey: 'user_id'
+            foreignKey: 'user_id',
+            timestamps: false,
         });
+
+        this.hasMany(models.Task, {
+            foreignKey: 'user_id',
+            as: 'tasks',
+        })
     }
 }
 

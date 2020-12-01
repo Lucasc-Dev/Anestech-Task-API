@@ -12,15 +12,17 @@ class Permission extends Sequelize.Model {
             },
             name: Sequelize.STRING,
         }, {
-            sequelize
+            sequelize, 
+            timestamps: false,
         });
     }
 
     static associate(models) {
-        this.belongsToMany(model.Role, {
+        this.belongsToMany(models.Role, {
             through: 'role_permission',
             as: 'roles',
-            foreignKey: 'permission_id'
+            foreignKey: 'permission_id',
+            timestamps: false,
         });
     }
 }

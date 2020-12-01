@@ -17,16 +17,18 @@ class Role extends Sequelize.Model {
     }
 
     static associate(models) {
-        this.belongsToMany(model.Permission, {
+        this.belongsToMany(models.Permission, {
             through: 'role_permission',
             as: 'permissions',
-            foreignKey: 'role_id'
+            foreignKey: 'role_id',
+            timestamps: false,
         });
 
-        this.belongsToMany(model.Role, {
+        this.belongsToMany(models.User, {
             through: 'user_role',
             as: 'users',
             foreignKey: 'role_id',
+            timestamps: false,
         })
     }
 }
